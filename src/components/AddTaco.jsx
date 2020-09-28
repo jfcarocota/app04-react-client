@@ -15,7 +15,7 @@ export default class AddTaco extends Component{
 
         axios.post('http://localhost:5000', {name: name, quantity: quantity, pica: pica})
         .then(response => response.data)
-        .then(data => window.location.reload());
+        .then(data => console.log(data));
     }
 
     catchName = event => this.setState({name: event.target.value});

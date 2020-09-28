@@ -16,6 +16,10 @@ export default class TacoList extends Component{
     }
 
     componentDidMount(){
+        this.watchCode();
+    }
+
+    watchCode = ()=> setTimeout(()=>{
         axios.get('http://localhost:5000')
         .then(reponse => reponse.data)
         .then(tacos => {
@@ -25,7 +29,8 @@ export default class TacoList extends Component{
                         </li>
             })})
         });
-    }
+        this.watchCode();
+    }, 1000);
 
     render() {
 
