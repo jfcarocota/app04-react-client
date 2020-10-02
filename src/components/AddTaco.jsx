@@ -15,7 +15,7 @@ export default class AddTaco extends Component{
 
         axios.post('http://localhost:5000', {name: name, quantity: quantity, pica: pica})
         .then(response => response.data)
-        .then(data => console.log(data));
+        .then(data => this.props.history.push('/'));
     }
 
     catchName = event => this.setState({name: event.target.value});
@@ -26,15 +26,28 @@ export default class AddTaco extends Component{
         return (
             <Fragment>
                 <h3>Agregar taco:</h3>
+                    <br/>
                     <div className='form-group' style={{width: '50%'}}>
-                        <span>Nombre del taco:</span>
-                        <input onChange={this.catchName} className='form-control' type="text" name="" id="taco-name" placeholder='eje: tu taco'/>
-                        <span>Cantidad:</span>
-                        <input onChange={this.catchQuantity} className='form-control' type="number" name="" id="taco-quantity" style={{width: '20%'}}/>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+                            </div>
+                            <input onChange={this.catchName} className='form-control' 
+                            type="text" name="" id="taco-name" placeholder='eje: tu taco'
+                            aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Cantidad</span>
+                            </div>
+                            <input onChange={this.catchQuantity} className='form-control' 
+                            type="number" name="" id="taco-quantity" placeholder='eje: tu taco'
+                            aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+                        </div>
                         <span>¿Es picante? (Si/No):</span>
                         <div>
                             <label htmlFor="option-spyciness"></label>
-                            <select onChange={this.catchSpacyness} id="option-spyciness" name="option-spyciness" style={{width: '20%'}}>
+                            <select className='custom-select custom-select-lg mb-3' onChange={this.catchSpacyness} id="option-spyciness" name="option-spyciness" style={{width: '20%'}}>
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
